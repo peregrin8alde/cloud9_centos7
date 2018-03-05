@@ -15,4 +15,6 @@ RUN yum -y update \
     && scripts/install-sdk.sh
 
 EXPOSE 8080
-CMD ["node", "/cloud9/c9sdk/server.js"]
+
+ENTRYPOINT ["node"]
+CMD ["/cloud9/c9sdk/server.js"]
