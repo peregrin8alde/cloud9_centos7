@@ -14,7 +14,7 @@ RUN yum -y update \
     && cd c9sdk \
     && scripts/install-sdk.sh
 
-EXPOSE 8080
+EXPOSE 8181
 
-ENTRYPOINT ["node"]
-CMD ["/cloud9/c9sdk/server.js"]
+ENTRYPOINT ["node", "/cloud9/c9sdk/server.js"]
+CMD ["--listen", "0.0.0.0", "--auth", ":"]
