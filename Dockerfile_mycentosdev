@@ -1,0 +1,17 @@
+FROM mycentosdev:7
+MAINTAINER Okada Hayato
+
+USER ${DEFAULT_USER}
+WORKDIR /cloud9
+
+RUN sudo -E yum -y install nodejs npm glibc-static \
+    && sudo -E chown ${DEFAULT_USER}:${DEFAULT_USER} /cloud9 \
+    && git clone git://github.com/c9/core.git c9sdk \
+    && cd c9sdk \
+    && scripts/install-sdk.sh \
+    && mkdir -p /cloud9/workspc
+
+EXPOSE 8181
+
+ENTRYPOINT ["node", "/cloud9/c9sdk/server.js"]
+CMD ["-w", "/cloud9/workspc", "--listen", "0.0.0.0", "--auth", "admin:admin"]
