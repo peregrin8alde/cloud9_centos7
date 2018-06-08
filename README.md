@@ -14,7 +14,7 @@ docker run -d \
 
 http://[HOST]:18181/ide.html
 
-mkdir ~/cloud9/workspc
+mkdir -p ~/cloud9/workspc
 docker run -d \
            --name cloud9 \
            -p 18080:8080 \
@@ -25,5 +25,16 @@ docker run -d \
              --listen 0.0.0.0 \
              --auth username:password
 
-http://[HOST]:18080/ide.html
+docker run -d \
+           -u 1000:1000 \
+           --name cloud9 \
+           -p 18080:8080 \
+           -v ~/cloud9/workspc:/cloud9/workspc \
+           mycloud9:3 \
+             -w /cloud9/workspc \
+             --port 8080 \
+             --listen 0.0.0.0 \
+             --auth :
 ```
+
+http://[HOST]:18080/ide.html
