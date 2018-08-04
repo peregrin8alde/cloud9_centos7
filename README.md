@@ -51,10 +51,4 @@ docker run -d \
            -p 28181:8181 \
            -v ~/:/cloud9/workspc \
            mycloud9:3
-
-docker run -d \
-           --name cloud9 \
-           -p 28181:8181 \
-           -v /media/win/vol2/work/:/cloud9/workspc \
-           mycloud9:3
 ```
